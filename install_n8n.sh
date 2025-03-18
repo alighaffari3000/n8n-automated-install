@@ -10,7 +10,13 @@ if [ -z "$DOMAIN_NAME" ]; then
 fi
 
 # Get the server IP address
-SERVER_IP=$(ip addr show eth0 | grep inet | awk '{print $2}' | sed 's/\/.*//')
+SERVER_IP=$(hostname -I | awk '{print $1}')
+
+# Check if an IP address was found
+if [ -z "$SERVER_IP" ]; then
+    echo "Error: Could not determine the server's IP address.  Please ensure hostname -I is working and returns an IP."
+    exit 1
+fi
 
 # Update the system
 echo "Updating system..."
@@ -76,6 +82,5 @@ Please perform the following steps manually:
 2. In Nginx Proxy Manager, create a new Proxy Host for the domain $DOMAIN_NAME.
 3. Create and apply an SSL certificate for your domain.
 
-4. The IP address of your server is $SERVER_IP, to retrieve the IP manually you can use
-```bash
-ip addr show eth0 | grep inet | awk '{print $2}' | sed -E 's/\/.*//'
+After completing these steps, n8n will be accessible with success!
+"
