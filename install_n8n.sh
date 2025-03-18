@@ -32,8 +32,29 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io -y
 sudo apt install docker-compose -y
 
-# Create the directory and docker-compose.yml file
+# Install Nginx Proxy Manager
+echo "Installing Nginx Proxy Manager..."
+mkdir nginx-proxy-manager
+cd nginx-proxy-manager
+cat > docker-compose.yml <<EOL
+version: '3.7'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+EOL
+docker compose up -d
+
+# Create the directory and docker-compose.yml file for N8N
 echo "Creating the n8n directory and docker-compose.yml file..."
+cd ..
 mkdir n8n
 cd n8n
 cat > docker-compose.yml <<EOL
@@ -72,7 +93,7 @@ sudo docker compose up -d
 
 echo "
 --------------------------------------------------------------------
-Initial n8n installation steps are complete!
+Initial Nginx Proxy Manager and n8n installation steps are complete!
 --------------------------------------------------------------------
 
 Please perform the following steps manually:
@@ -82,5 +103,6 @@ Please perform the following steps manually:
 2. In Nginx Proxy Manager, create a new Proxy Host for the domain $DOMAIN_NAME.
 3. Create and apply an SSL certificate for your domain.
 
-After completing these steps, n8n will be accessible with success!
-"
+4. The IP address of your server is $SERVER_IP, to retrieve the IP manually you can use
+```bash
+ip addr show eth0 | grep inet | awk '{print $2}' | sed -E 's/\/.*//'
