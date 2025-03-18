@@ -1,6 +1,6 @@
 # Automated n8n Installation Script for Ubuntu
 
-This bash script automates the initial installation of n8n, the workflow automation platform, on an Ubuntu server.
+This bash script automates the installation of n8n (Workflow Automation) on Ubuntu alongside with automatic Nginx Proxy Manager deployment
 
 **Disclaimer:** This script automates many steps but requires manual configuration of Nginx Proxy Manager and DNS records for full functionality. Please review the script and ensure you understand each step before execution.
 
@@ -14,18 +14,19 @@ This bash script automates the initial installation of n8n, the workflow automat
 
 1.  **Run the automated installation script:**
 
-    Execute the following command to download the script, make it executable, and run it.
+    Execute the following command to download the script, make it executable, and run it. 
 
     ```bash
     wget https://raw.githubusercontent.com/alighaffari3000/n8n-automated-install/main/install_n8n.sh && chmod +x install_n8n.sh && sudo ./install_n8n.sh
     ```
- When prompted, enter the domain name you want to use for your n8n instance (e.g., `n8n.example.com`).
-   
+When prompted, enter the domain name you want to use for your n8n instance (e.g., `n8n.example.com`).
+
+
 ## Manual Configuration Steps
 
-After the script completes the automated steps, you **MUST** perform the following manual configuration:
+After the script completes, some manual configuration is still required:
 
-1.  **Access Nginx Proxy Manager:** Open your server's IP address in a web browser, adding port `81` to access the Nginx Proxy Manager interface (e.g., `http://YOUR_SERVER_IP:81`).
+1.  **Access Nginx Proxy Manager:** Open your server IP address in a web browser, adding port `81` to access the Nginx Proxy Manager interface (e.g., `http://YOUR_SERVER_IP:81`).
 
 2.  **Add a Proxy Host:**
 
@@ -46,7 +47,10 @@ After the script completes the automated steps, you **MUST** perform the followi
 
 ## Important Notes
 *   This script assumes you have not run n8n before to generate an error that will mess up the set up. If you think you might have already setup Nginx, Please run this command to delete any pre existing images ```docker stop n8n; docker rm n8n```
-*   Nginx Proxy Manager is already installed and configured to properly reroute everything.
+*   The script is intended to install both Nginx Proxy Manager AND n8n on the server.
+
+    After it's done set up is required. If it isn't correctly installed please review and modify the ports in the install and docker-compose steps.
+    It's intended that `hostname -I` works by default please make sure that it does.
 
 ## Contributing
 
