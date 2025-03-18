@@ -15,10 +15,10 @@ This bash script automates the initial installation of n8n, the workflow automat
 1.  **Download the script:**
 
     ```bash
-    wget <YOUR_RAW_GITHUB_URL>/install_n8n.sh
+    wget https://raw.githubusercontent.com/alighaffari3000/n8n-automated-install/main/install_n8n.sh
     ```
 
-    *(Replace `<YOUR_RAW_GITHUB_URL>` with the raw URL of your `install_n8n.sh` file in your GitHub repository.)*
+    * (Replace `YOUR_RAW_GITHUB_URL` with the raw URL of your `install_n8n.sh` file in your GitHub repository.)*
 
 2.  **Make the script executable:**
 
