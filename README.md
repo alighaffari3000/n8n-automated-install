@@ -19,8 +19,8 @@ This bash script automates the installation of n8n (Workflow Automation) on Ubun
     ```bash
     wget https://raw.githubusercontent.com/alighaffari3000/n8n-automated-install/main/install_n8n.sh && chmod +x install_n8n.sh && sudo ./install_n8n.sh
     ```
-When prompted, enter the domain name you want to use for your n8n instance (e.g., `n8n.example.com`).
 
+When prompted, enter the domain name you want to use for your n8n instance (e.g., `n8n.example.com`).
 
 ## Manual Configuration Steps
 
