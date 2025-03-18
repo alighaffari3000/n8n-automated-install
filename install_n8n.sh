@@ -57,31 +57,31 @@ echo "Creating the n8n directory and docker-compose.yml file..."
 cd ..
 mkdir n8n
 cd n8n
-cat > docker-compose.yml <<EOL
-version: "3.7"
-services:
-  n8n:
-    image: docker.n8n.io/n8nio/n8n
-    restart: always
-    environment:
-      - N8N_HOST=$DOMAIN_NAME
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - NODE_ENV=production
-      - WEBHOOK_URL=https://$DOMAIN_NAME/
-      - GENERIC_TIMEZONE=Asia/Tehran
-    volumes:
-      - n8n_data:/home/node/.n8n
-    networks:
-      - nginxproxymanager_default
+# Use echo to create the file
+echo "version: \"3.7\"" > docker-compose.yml
+echo "services:" >> docker-compose.yml
+echo "  n8n:" >> docker-compose.yml
+echo "    image: docker.n8n.io/n8nio/n8n" >> docker-compose.yml
+echo "    restart: always" >> docker-compose.yml
+echo "    environment:" >> docker-compose.yml
+echo "      - N8N_HOST=$DOMAIN_NAME" >> docker-compose.yml
+echo "      - N8N_PORT=5678" >> docker-compose.yml
+echo "      - N8N_PROTOCOL=https" >> docker-compose.yml
+echo "      - NODE_ENV=production" >> docker-compose.yml
+echo "      - WEBHOOK_URL=https://$DOMAIN_NAME/" >> docker-compose.yml
+echo "      - GENERIC_TIMEZONE=Asia/Tehran" >> docker-compose.yml
+echo "    volumes:" >> docker-compose.yml
+echo "      - n8n_data:/home/node/.n8n" >> docker-compose.yml
+echo "    networks:" >> docker-compose.yml
+echo "      - nginxproxymanager_default" >> docker-compose.yml
+echo "" >> docker-compose.yml
+echo "volumes:" >> docker-compose.yml
+echo "  n8n_data:" >> docker-compose.yml
+echo "" >> docker-compose.yml
+echo "networks:" >> docker-compose.yml
+echo "  nginxproxymanager_default:" >> docker-compose.yml
+echo "    external: true" >> docker-compose.yml
 
-volumes:
-  n8n_data:
-
-networks:
-  nginxproxymanager_default:
-    external: true
-EOL
 
 # Run setting up DNS in Nginx Proxy Manager for the first time
 echo "Running Nginx Proxy Manager ..."
