@@ -5,9 +5,12 @@ read -p "Enter your domain name (e.g., n8n.example.com): " DOMAIN_NAME
 
 # Check if the domain name variable is empty
 if [ -z "$DOMAIN_NAME" ]; then
-  echo "Error: You didn't enter a domain name!"
-  exit 1
+    echo "Error: You didn't enter a domain name!"
+    exit 1
 fi
+
+# Get the server IP address
+SERVER_IP=$(ip addr show eth0 | grep inet | awk '{print $2}' | sed 's/\/.*//')
 
 # Update the system
 echo "Updating system..."
@@ -69,8 +72,10 @@ Initial n8n installation steps are complete!
 Please perform the following steps manually:
 
 1. Open your server IP address in a web browser (with port 81 for Nginx Proxy Manager).
+   The Nginx Proxy Manager interface can be accessed at: http://$SERVER_IP:81
 2. In Nginx Proxy Manager, create a new Proxy Host for the domain $DOMAIN_NAME.
 3. Create and apply an SSL certificate for your domain.
 
-After completing these steps, n8n will be accessible with success!
-"
+4. The IP address of your server is $SERVER_IP, to retrieve the IP manually you can use
+```bash
+ip addr show eth0 | grep inet | awk '{print $2}' | sed -E 's/\/.*//'
