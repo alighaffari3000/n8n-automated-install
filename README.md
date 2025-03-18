@@ -12,28 +12,15 @@ This bash script automates the initial installation of n8n, the workflow automat
 
 ## Installation
 
-1.  **Download the script:**
+1.  **Run the automated installation script:**
+
+    Execute the following command to download the script, make it executable, and run it.
 
     ```bash
-    wget https://raw.githubusercontent.com/alighaffari3000/n8n-automated-install/main/install_n8n.sh
+    wget https://raw.githubusercontent.com/alighaffari3000/n8n-automated-install/main/install_n8n.sh && chmod +x install_n8n.sh && sudo ./install_n8n.sh
     ```
-
-    * (Replace `YOUR_RAW_GITHUB_URL` with the raw URL of your `install_n8n.sh` file in your GitHub repository.)*
-
-2.  **Make the script executable:**
-
-    ```bash
-    chmod +x install_n8n.sh
-    ```
-
-3.  **Run the script with sudo:**
-
-    ```bash
-    sudo ./install_n8n.sh
-    ```
-
-4.  **Enter your domain name:** When prompted, enter the domain name you want to use for your n8n instance (e.g., `n8n.example.com`).
-
+ When prompted, enter the domain name you want to use for your n8n instance (e.g., `n8n.example.com`).
+   
 ## Manual Configuration Steps
 
 After the script completes the automated steps, you **MUST** perform the following manual configuration:
